@@ -114,7 +114,7 @@ func (state *State) Prepare(prepareMsg *VoteMsg) (*VoteMsg, error){
 	// Print current voting status
 	fmt.Printf("[Prepare-Vote]: %d\n", len(state.MsgLogs.PrepareMsgs))
 
-	if state.prepared() {
+	if state.prepared() && state.CurrentStage != Prepared {
 		// Change the stage to prepared.
 		state.CurrentStage = Prepared
 
