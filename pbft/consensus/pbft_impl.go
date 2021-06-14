@@ -114,7 +114,7 @@ func (state *State) Prepare(prepareMsg *VoteMsg) (*VoteMsg, error){
 	// Print current voting status
 	fmt.Printf("[Prepare-Vote]: %d\n", len(state.MsgLogs.PrepareMsgs))
 
-	if state.prepared() {
+	if state.prepared() && state.CurrentStage != Prepared {
 		// Change the stage to prepared.
 		state.CurrentStage = Prepared
 
@@ -140,7 +140,7 @@ func (state *State) Commit(commitMsg *VoteMsg) (*ReplyMsg, *RequestMsg, error) {
 	// Print current voting status
 	fmt.Printf("[Commit-Vote]: %d\n", len(state.MsgLogs.CommitMsgs))
 
-	if state.committed() {
+	if state.committed() && state.CurrentStage != Committed {
 		// This node executes the requested operation locally and gets the result.
 		result := "Executed"
 
