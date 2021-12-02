@@ -95,5 +95,5 @@ func (server *Server) getReply(writer http.ResponseWriter, request *http.Request
 
 func send(url string, msg []byte) {
 	buff := bytes.NewBuffer(msg)
-	http.Post("http://" + url, "application/json", buff)
+	go http.Post("http://" + url, "application/json", buff)
 }
